@@ -8,7 +8,6 @@ const userController = {
         email: req.body.email,
         password: req.body.password
       };
-      // console.log(user);
 
       const response = await User.create(user);
 
@@ -16,6 +15,19 @@ const userController = {
 
     } catch (error) {
       console.log(error);
+    }
+  },
+
+  findOneById: async(req, res) => {
+    try {
+      const { id } = req.params;
+
+      const response = await User.findById(id);
+
+      res.status(200).json(response);
+      
+    } catch (error) {
+      return res.status(404).json({ message: "Usuário não encontrado" });
     }
   }
 };
