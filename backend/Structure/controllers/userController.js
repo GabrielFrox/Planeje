@@ -17,11 +17,9 @@ const userController = {
         password: req.body.password
       };
 
-      const response = await User.create(user);
-      const token = jwt.sign({ response }, JWT_SECRET, jwtConfig);
+      await User.create(user);
 
       res.status(201).json({
-        token,
         msg: "Usuário criado com sucesso"
       });
 
@@ -35,8 +33,9 @@ const userController = {
       const { id } = req.params;
 
       const response = await User.findById(id);
+      const token = jwt.sign({ response }, JWT_SECRET, jwtConfig);
 
-      res.status(200).json(response);
+      res.status(200).json({ token, response });
       
     } catch (error) {
       // console.log(error);
