@@ -1,10 +1,9 @@
 const router = require('express').Router();
+const tokenAuth = require('../middlewares/tokenAuth');
 
 const userController = require('../controllers/userController');
 
-// router.route("/user")
-router.post('/user', userController.create);
-router.get('/user/:id', userController.findOneById);
-// router.get((req, res) => userController.findOneById(req, res));
+router.post('/user/register', userController.create);
+router.get('/user/:id', tokenAuth, userController.findOneById);
 
 module.exports = router;

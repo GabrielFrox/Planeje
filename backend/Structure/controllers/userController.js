@@ -1,4 +1,12 @@
 const User = require('../models/Users');
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+
+const { JWT_SECRET } = process.env;
+const jwtConfig = {
+  expiresIn: '7d',
+  algorithm: 'HS256'
+};
 
 const userController = {
   create: async(req, res) => {
@@ -10,8 +18,12 @@ const userController = {
       };
 
       const response = await User.create(user);
+      const token = jwt.sign({ response }, JWT_SECRET, jwtConfig);
 
-      res.status(201).json({response, msg: "Usuário criado com sucesso"});
+      res.status(201).json({
+        token,
+        msg: "Usuário criado com sucesso"
+      });
 
     } catch (error) {
       console.log(error);
@@ -27,6 +39,7 @@ const userController = {
       res.status(200).json(response);
       
     } catch (error) {
+      // console.log(error);
       return res.status(404).json({ message: "Usuário não encontrado" });
     }
   }
