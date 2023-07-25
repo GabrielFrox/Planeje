@@ -13,11 +13,12 @@ export const registerNewUser = async (payload) => {
   }
 }
 
-export const getTest = async () => {
+export const login = async (payload) => {
   try {
-    const result = await api.get('/user/64bacd0ddddf94ea1ba0d49f');
+    const result = await api.post('/user', payload);
     return result;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
+    return error.response;
   }
 }

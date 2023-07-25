@@ -18,13 +18,12 @@ export default function CreateUser() {
     autoClose: 1500,
     pauseOnHover: false,
     theme: "dark",
-    
   });
 
   const formHandler = async (e) => {
     e.preventDefault();
     const registeredUser = await registerNewUser(state);
-    notify(registeredUser.data.msg);
+    notify(registeredUser.data.message);
   }
 
   const fieldHandler = ({ target: { name, value } }) => {
@@ -41,7 +40,7 @@ export default function CreateUser() {
         </fieldset>
         <button type="submit">Criar conta</button>
       </form>
-      <ToastContainer />
+      <ToastContainer toastStyle={{ backgroundColor: "" }} />
     </div>
   )
 };

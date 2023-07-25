@@ -20,7 +20,7 @@ const userController = {
       await User.create(user);
 
       res.status(201).json({
-        msg: "Usuário criado com sucesso"
+        message: "Usuário criado com sucesso"
       });
 
     } catch (error) {
@@ -30,16 +30,20 @@ const userController = {
 
   findOneById: async(req, res) => {
     try {
-      const { id } = req.params;
+      const { email, password } = req.body;
+      // console.log(req.body);
 
-      const response = await User.findById(id);
+      const response = await User.findOne({ email, password });
+      if (!response) throw new Error("Usuário ou senha incorreta");
+      // return res.status(401).json({ message: "Usuário não encontrado" });
+
       const token = jwt.sign({ response }, JWT_SECRET, jwtConfig);
 
       res.status(200).json({ token, response });
       
     } catch (error) {
-      // console.log(error);
-      return res.status(404).json({ message: "Usuário não encontrado" });
+      // console.log(error.message);
+      return res.status(401).json({ message: error.message });
     }
   }
 };
