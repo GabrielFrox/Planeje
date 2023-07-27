@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { inputField } from '../helpers/helpers';
 import { registerNewUser } from '../services/axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -12,6 +13,7 @@ export default function CreateUser() {
   };
 
   const [state, setState] = useState(INITIAL_STATE);
+  const navigate = useNavigate();
 
   const notify = (msg) => toast.success(msg, {
     position: "top-center",
@@ -24,6 +26,7 @@ export default function CreateUser() {
     e.preventDefault();
     const registeredUser = await registerNewUser(state);
     notify(registeredUser.data.message);
+    setTimeout(() => { navigate('/') }, 3000)
   }
 
   const fieldHandler = ({ target: { name, value } }) => {
@@ -34,9 +37,9 @@ export default function CreateUser() {
     <div>
       <form onSubmit={ formHandler }>
         <fieldset>
-          { inputField(true, 'text', 'name', 'nome', fieldHandler) }
-          { inputField(true, 'email', 'email', 'email', fieldHandler) }
-          { inputField(true, 'password', 'password', 'senha', fieldHandler) }
+          { inputField('text', 'name', 'nome', 'Seu nome', fieldHandler) }
+          { inputField('email', 'email', 'email', 'Seu email', fieldHandler) }
+          { inputField('password', 'password', 'senha', 'Sua senha', fieldHandler) }
         </fieldset>
         <button type="submit">Criar conta</button>
       </form>
