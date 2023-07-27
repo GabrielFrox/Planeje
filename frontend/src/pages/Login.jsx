@@ -2,14 +2,16 @@ import React, { useState } from 'react';
 import { inputField } from '../helpers/helpers';
 import { ToastContainer, toast } from 'react-toastify';
 import { login } from '../services/axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Login() {
   const INITIAL_STATE = {
     email: '',
     password: ''
   }
+
   const [state, setState] = useState(INITIAL_STATE);
+  const navigate = useNavigate();
 
   const notify = (msg, type) => toast(msg, {
     type: type,
@@ -26,6 +28,8 @@ export default function Login() {
     if (loginResult.status === 401) notify(loginResult.data.message, 'error');
     else {
       notify('Logado com sucesso', 'success');
+      localStorage.setItem('token', loginResult.data.token);
+      setTimeout(() => { navigate('/dashboard') }, 3000); 
     }
   }
 
