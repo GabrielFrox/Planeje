@@ -9,7 +9,7 @@ export const registerNewUser = async (payload) => {
     const result = await api.post('/user/register', payload);
     return result;
   } catch (error) {
-    console.log(error);
+    return error.response
   }
 }
 

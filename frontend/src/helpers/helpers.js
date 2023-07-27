@@ -9,7 +9,7 @@ export const inputField = (type, name, id, placeholder, handler) => {
         type={ type }
         name={ name }
         onChange={ handler }
-        pattern={ type === 'text' ? "^[a-zA-Z ]*$" : undefined }
+        pattern={ type === 'text' ? "[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$" : undefined }
       />
     </label>
   )

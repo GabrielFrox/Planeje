@@ -28,14 +28,12 @@ const userController = {
     }
   },
 
-  findOneById: async(req, res) => {
+  login: async(req, res) => {
     try {
       const { email, password } = req.body;
-      // console.log(req.body);
 
       const response = await User.findOne({ email, password });
-      if (!response) throw new Error("Usuário ou senha incorreta");
-      // return res.status(401).json({ message: "Usuário não encontrado" });
+      if (!response) throw new Error("Usuário ou senha incorretos");
 
       const token = jwt.sign({ response }, JWT_SECRET, jwtConfig);
 

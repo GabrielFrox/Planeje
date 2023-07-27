@@ -36,7 +36,7 @@ export default function Login() {
   return (
     <div>
       <form onSubmit={ formHandler }>
-        { inputField('text', 'email', 'email', 'Seu email', fieldHandler) }
+        { inputField('email', 'email', 'email', 'Seu email', fieldHandler) }
         { inputField('password', 'password', 'senha', 'Sua senha', fieldHandler) }
         <button type="submit">Login</button>
       </form>

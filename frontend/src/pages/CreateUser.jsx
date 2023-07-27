@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { inputField } from '../helpers/helpers';
 import { registerNewUser } from '../services/axios';
 import { ToastContainer, toast } from 'react-toastify';
@@ -15,8 +15,9 @@ export default function CreateUser() {
   const [state, setState] = useState(INITIAL_STATE);
   const navigate = useNavigate();
 
-  const notify = (msg) => toast.success(msg, {
+  const notify = (msg, type) => toast(msg, {
     position: "top-center",
+    type: type,
     autoClose: 1500,
     pauseOnHover: false,
     theme: "dark",
@@ -25,12 +26,15 @@ export default function CreateUser() {
   const formHandler = async (e) => {
     e.preventDefault();
     const registeredUser = await registerNewUser(state);
-    notify(registeredUser.data.message);
-    setTimeout(() => { navigate('/') }, 3000)
+    if (registeredUser.status === 403) notify(registeredUser.data.message, 'error');
+    else {
+      notify(registeredUser.data.message, 'success');
+      setTimeout(() => { navigate('/') }, 3000)
+    }
   }
 
   const fieldHandler = ({ target: { name, value } }) => {
-    setState({ ...state, [name]: value });
+    setState({ ...state, [name]: value.toLowerCase() });
   };
 
   return (
@@ -43,6 +47,9 @@ export default function CreateUser() {
         </fieldset>
         <button type="submit">Criar conta</button>
       </form>
+      <section>
+        <p>Já é cadastrado? Faça o login clicando <Link to='/'>aqui</Link></p>
+      </section>
       <ToastContainer toastStyle={{ backgroundColor: "" }} />
     </div>
   )
