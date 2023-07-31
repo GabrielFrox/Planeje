@@ -18,7 +18,15 @@ export const login = async (payload) => {
     const result = await api.post('/user', payload);
     return result;
   } catch (error) {
-    // console.log(error);
+    return error.response;
+  }
+}
+
+export const getUserInfo = async (payload) => {
+  try {
+    const result = await api.get('/user', { headers: { Authorization: payload } });
+    return result;
+  } catch (error) {
     return error.response;
   }
 }

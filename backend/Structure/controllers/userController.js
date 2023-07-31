@@ -40,8 +40,19 @@ const userController = {
       res.status(200).json({ token, response });
       
     } catch (error) {
-      // console.log(error.message);
       return res.status(401).json({ message: error.message });
+    }
+  },
+
+  getUserInfo: async(req, res) => {
+    try {
+      const id = req.userId;
+      const result = await User.findById(id, '-password -_id -createdAt -updatedAt -__v');
+      if (!result) throw new Error('Usuário não encontrado');
+
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(401).json({ message: error.message });
     }
   }
 };

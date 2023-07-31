@@ -50,7 +50,7 @@ export default function CreateUser() {
       <section>
         <p>Já é cadastrado? Faça o login clicando <Link to='/'>aqui</Link></p>
       </section>
-      <ToastContainer toastStyle={{ backgroundColor: "" }} />
+      <ToastContainer />
     </div>
   )
 };
