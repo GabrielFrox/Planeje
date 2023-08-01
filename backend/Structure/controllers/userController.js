@@ -11,13 +11,9 @@ const jwtConfig = {
 const userController = {
   create: async(req, res) => {
     try {
-      const user = {
-        name: req.body.name,
-        email: req.body.email,
-        password: req.body.password
-      };
+      const { body: userData } = req;
 
-      await User.create(user);
+      await User.create(userData);
 
       res.status(201).json({
         message: "Usuário criado com sucesso"

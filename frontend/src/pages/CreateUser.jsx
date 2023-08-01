@@ -9,7 +9,11 @@ export default function CreateUser() {
   const INITIAL_STATE = {
     name: '',
     email: '',
-    password: ''
+    password: '',
+    objective: '',
+    course: '',
+    language: '',
+    cutscore: 0
   };
 
   const [state, setState] = useState(INITIAL_STATE);
@@ -41,9 +45,34 @@ export default function CreateUser() {
     <div>
       <form onSubmit={ formHandler }>
         <fieldset>
+          {/* Name field */}
           { inputField('text', 'name', 'nome', 'Seu nome', fieldHandler) }
+
+          {/* Email field */}
           { inputField('email', 'email', 'email', 'Seu email', fieldHandler) }
+
+          {/* Password Field */}
           { inputField('password', 'password', 'senha', 'Sua senha', fieldHandler) }
+
+          {/* Objective field */}
+          { inputField('text', 'objective', 'objetivo', 'Objetivo', fieldHandler) }
+
+          {/* Course field */}
+          { inputField('text', 'course', 'curso', 'Curso desejado', fieldHandler) }
+
+          {/* Cut-score field */}
+          { inputField('number', 'cutscore', 'nota de corte', 'Valor', fieldHandler) }
+
+          {/* Language field */}
+          <label htmlFor="language">Língua estrangeira:</label>
+          {/* This event needs to be done here because of some error in handler function when it tries to read name */}
+          <select name="language" id="linguagens" defaultValue='' onChange={ ({ target: { value } }) => {
+            setState({ ...state, language: value })
+          } }>
+            <option value="" disabled={true}>Escolha uma</option>
+            <option value="inglês">inglês</option>
+            <option value="espanhol">espanhol</option>
+          </select>
         </fieldset>
         <button type="submit">Criar conta</button>
       </form>

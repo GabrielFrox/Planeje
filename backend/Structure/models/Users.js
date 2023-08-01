@@ -2,12 +2,13 @@ const mongoose = require('mongoose');
 const {Schema} = mongoose;
 
 const userSchema = new Schema({
-    name: {
-      type: String,
-      required: true
-    },
+    name: String,
     email: String,
     password: String,
+    objective: String,
+    course: String,
+    cutscore: Number,
+    language: String,
     schedule: {
       monday: Array,
       tuesday: Array,

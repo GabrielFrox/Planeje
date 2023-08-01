@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 import { getUserInfo } from '../services/axios';
+import UserInfoBar from '../components/UserInfoBar';
+import Schedule from '../components/Schedule';
 
 export default function Dashboard() {
   const INITIAL_STATE = {
@@ -51,7 +53,8 @@ export default function Dashboard() {
   const dashboardContent = () => {
     return (
       <>
-        <h1>DASHBOARD</h1>
+        <UserInfoBar  userData={ state.userData }/>
+        <Schedule userData={ state.userData }/>
       </>
     );
   }
