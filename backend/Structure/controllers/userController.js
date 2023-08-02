@@ -50,6 +50,20 @@ const userController = {
     } catch (error) {
       res.status(401).json({ message: error.message });
     }
+  },
+
+  updateUserInfo: async(req, res) => {
+    try {
+      const id = req.userId;
+      const day = Object.keys(req.body)[0];
+      const disciplineArray = req.body[day];
+      const query = `schedule.${day}`;
+
+      await User.findByIdAndUpdate(id, { $set: { [query]: disciplineArray } });
+      res.status(204).send('sucess');
+    } catch (error) {
+      res.status(error.status).json({ message: error.message });
+    }
   }
 };
 

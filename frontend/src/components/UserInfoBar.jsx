@@ -9,7 +9,7 @@ export default function UserInfoBar(props) {
     cutscore,
     language,
   } } = props;
-  console.log(props.userData);
+  // console.log(props.userData);
   
 
   return (

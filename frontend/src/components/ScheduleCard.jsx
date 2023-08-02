@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function ScheduleCard(array) {
+export default function ScheduleCard({array, day}) {
   return (
-    <div className='daySchedule'>
-      { array.map((array, i) => <p>{ array[i] }</p>) }
+    <div className='daySchedule' key={ day }>
+      { array.map((content, i) => <p key={ i }>{ content }</p>) }
     </div>
   )
 };

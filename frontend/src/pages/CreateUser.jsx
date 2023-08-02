@@ -69,7 +69,7 @@ export default function CreateUser() {
           <select name="language" id="linguagens" defaultValue='' onChange={ ({ target: { value } }) => {
             setState({ ...state, language: value })
           } }>
-            <option value="" disabled={true}>Escolha uma</option>
+            <option value="" disabled={ true }>Escolha uma</option>
             <option value="inglês">inglês</option>
             <option value="espanhol">espanhol</option>
           </select>

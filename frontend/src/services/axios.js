@@ -30,3 +30,13 @@ export const getUserInfo = async (payload) => {
     return error.response;
   }
 }
+
+  export const updateUserInfo = async (payload) => {
+    try {
+      const { token, content } = payload;
+      const result = await api.put('/user/update', content, { headers: { Authorization: token } })
+      return result;
+    } catch (error) {
+      return error.response;
+    }
+  }

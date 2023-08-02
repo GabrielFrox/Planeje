@@ -16,7 +16,7 @@ const userSchema = new Schema({
       thursday: Array,
       friday: Array,
       saturday: Array,
-      Sunday: Array
+      sunday: Array
     }
   },
   {timestamps: true}
