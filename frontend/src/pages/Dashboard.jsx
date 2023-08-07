@@ -9,7 +9,6 @@ import Schedule from '../components/Schedule';
 export default function Dashboard() {
   const INITIAL_STATE = {
     userData: undefined,
-    updateData: undefined,
   };
 
   const [state, setState] = useState(INITIAL_STATE);
@@ -66,7 +65,8 @@ export default function Dashboard() {
     if (!token) {
       errorHandler('Token não encontrado, faça login novamente');
     }
-    
+
+  // Token validation
     async function fetchUserData(token) {
       const userInfo = await getUserInfo(token);
       if (userInfo.status === 401) {

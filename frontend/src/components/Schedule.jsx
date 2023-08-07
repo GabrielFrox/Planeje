@@ -35,6 +35,7 @@ export default function Shedule(props) {
         </div>
         <div>
           <button onClick={ () => setIsOpen(false) }>Adicionar Disciplina</button>
+          {/* Hoje é aqui, ta fudido meu caro */}
           <button>Remover Disciplina</button>
         </div>
       </header>
@@ -48,7 +49,7 @@ export default function Shedule(props) {
       }
       <form onSubmit={ formHandler } className='add-discipline' hidden={ open }>
         <p>Adicionar disciplina</p>
-        <button className='close-btn' onClick={ () => setIsOpen(true) }>X</button>
+        <button className='close-btn' onClick={ (e) => { e.preventDefault(); setIsOpen(true) } }>X</button>
         <fieldset>
           {/* Discipline */}
           <label htmlFor="discipline">Disciplina</label>
