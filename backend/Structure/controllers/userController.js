@@ -64,6 +64,20 @@ const userController = {
     } catch (error) {
       res.status(error.status).json({ message: error.message });
     }
+  },
+
+  removeDiscipline: async(req, res) => {
+    try {
+      const id = req.userId;
+      const { newArray, day } = req.body;
+      const query = `schedule.${day}`;
+      
+      await User.findByIdAndUpdate(id, { $set: { [query]: newArray[0] } });
+      res.status(204).send('success');
+
+    } catch (error) {
+      res.status(400).send(error);
+    }
   }
 };
 

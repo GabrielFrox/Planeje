@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 import ScheduleCard from './ScheduleCard';
+// import { removeDiscipline } from '../services/axios';
 import { disciplines } from '../helpers/disciplines';
 import { daysInPt } from '../helpers/daysInPt';
 
 export default function Shedule(props) {
-  const [open, setIsOpen] = useState(true);
+  const [open, setIsOpen] = useState({ add: true, remove: true });
   const [newSchedule, setNewSchedule] = useState({
     discipline: '',
     day: '',
   });
-  const { schedule, handler } = props;
+  const { schedule, handler, removeHandler } = props;
   const days = Object.keys(schedule);
 
   const optionField = (string, type) => (
@@ -18,7 +19,7 @@ export default function Shedule(props) {
     </option>
   );
 
-  const formHandler = async (e) => {
+  const formHandler = (e) => {
     e.preventDefault();
     const newDaySchedule = {
       [newSchedule.day]: newSchedule.discipline
@@ -34,22 +35,27 @@ export default function Shedule(props) {
           <h3>Cronograma semanal</h3>
         </div>
         <div>
-          <button onClick={ () => setIsOpen(false) }>Adicionar Disciplina</button>
+          <button onClick={ () => setIsOpen({ ...open, add: false}) }>Adicionar Disciplina</button>
           {/* Hoje é aqui, ta fudido meu caro */}
-          <button>Remover Disciplina</button>
+          <button onClick={ () => setIsOpen({ ...open, remove: !open.remove }) }>Remover Disciplina</button>
         </div>
       </header>
       {
         days.map((day) => ( 
           <div key={ day }>
             { daysInPt[day] }
-            <ScheduleCard array={ schedule[day] } day={ day } />
+            <ScheduleCard
+              array={ schedule[day] }
+              day={ day }
+              removeStatus={ open.remove }
+              deleteHandler={ removeHandler }
+            />
           </div>
         ))  
       }
-      <form onSubmit={ formHandler } className='add-discipline' hidden={ open }>
+      <form onSubmit={ formHandler } className='add-discipline' hidden={ open.add }>
         <p>Adicionar disciplina</p>
-        <button className='close-btn' onClick={ (e) => { e.preventDefault(); setIsOpen(true) } }>X</button>
+        <button className='close-btn' onClick={ (e) => { e.preventDefault(); setIsOpen({...open, add: true}) } }>X</button>
         <fieldset>
           {/* Discipline */}
           <label htmlFor="discipline">Disciplina</label>

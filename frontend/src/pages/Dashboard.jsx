@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import { getUserInfo } from '../services/axios';
-import { updateUserInfo } from '../services/axios';
+import { getUserInfo, updateUserInfo, removeDiscipline } from '../services/axios';
+// import { updateUserInfo } from '../services/axios';
 import UserInfoBar from '../components/UserInfoBar';
 import Schedule from '../components/Schedule';
 
@@ -32,6 +32,7 @@ export default function Dashboard() {
     const newDaySchedule = {
       [day]: state.userData.schedule[day].concat(discipline)
     };
+    // console.log(newDaySchedule);
 
     setState((curr) => {
       return {
@@ -46,10 +47,38 @@ export default function Dashboard() {
       }
     })
 
-    const updateDB = await updateUserInfo({ token, content: newDaySchedule
+    await updateUserInfo({ token, content: newDaySchedule
     });
 
-    console.log(updateDB);
+    // console.log(updateDB);
+  }
+
+  // Function passed by props to ScheduleCard component to get info about the discipline to be removed
+  const removeDisciplineHandler = async ({ target }, day) => {
+    const disciplineIndex = target.getAttribute('index');
+    const token = localStorage.getItem('token');
+    const payload = { newArray: [state.userData.schedule[day]], day, token };
+    
+    // Array.splice returns the removed element and not the original element modified, so i can't
+    // use it directly on setState
+    const currentDisciplines = state.userData.schedule[day];
+    currentDisciplines.splice(disciplineIndex, 1);
+    
+    setState((curr) => {
+      return {
+        ...curr,
+        userData: {
+          ...curr.userData,
+          schedule: {
+            ...curr.userData.schedule,
+            [day]: currentDisciplines
+          }
+        }
+      }
+    })
+    
+    await removeDiscipline(payload);
+    // console.log(payload);
   }
 
   const errorHandler = (error) => {
@@ -85,7 +114,7 @@ export default function Dashboard() {
     return (
       <>
         <UserInfoBar userData={ state.userData }/>
-        <Schedule schedule={ state.userData.schedule } handler={ scheduleHandler }/>
+        <Schedule schedule={ state.userData.schedule } handler={ scheduleHandler } removeHandler={ removeDisciplineHandler } />
       </>
     );
   }

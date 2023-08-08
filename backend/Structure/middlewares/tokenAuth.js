@@ -13,6 +13,7 @@ module.exports = async (req, res, next) => {
     const decoded = jwt.verify(token, JWT_SECRET);
 
     req.userId = decoded.response._id;
+    // console.log(decoded);
     next();
   } catch (error) {
     res.status(401).json({ message: error.message });
