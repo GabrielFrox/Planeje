@@ -25,6 +25,7 @@ export default function Login() {
     e.preventDefault();
     const data = state;
     const loginResult = await login(data);
+    console.log(loginResult);
     if (loginResult.status === 401) notify(loginResult.data.message, 'error');
     else {
       notify('Logado com sucesso', 'success');

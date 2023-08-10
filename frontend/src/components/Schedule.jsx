@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ScheduleCard from './ScheduleCard';
 // import { removeDiscipline } from '../services/axios';
 import { disciplines } from '../helpers/disciplines';
 import { daysInPt } from '../helpers/daysInPt';
 
 export default function Shedule(props) {
+  const disciplinesArray = Object.keys(disciplines);
   const [open, setIsOpen] = useState({ add: true, remove: true });
   const [newSchedule, setNewSchedule] = useState({
     discipline: '',
     day: '',
   });
+  const [saveButtonStatus, setSaveButtonStatus] = useState(true);
   const { schedule, handler, removeHandler } = props;
   const days = Object.keys(schedule);
 
@@ -26,6 +28,10 @@ export default function Shedule(props) {
     };
     handler(newDaySchedule);
   }
+  
+  useEffect(() => {
+    setSaveButtonStatus((newSchedule.discipline === '' || newSchedule.day === ''));
+  }, [newSchedule])
 
   return (
     <section>
@@ -63,7 +69,7 @@ export default function Shedule(props) {
           name="discipline" defaultValue=''
           >
             <option value="" disabled={ true }>Escolha uma...</option>
-            { disciplines.map((discipline) => (
+            { disciplinesArray.map((discipline) => (
               optionField(discipline, 'discipline')
             )) }
           </select>
@@ -74,7 +80,8 @@ export default function Shedule(props) {
             <option value="" disabled={ true }>Escolha um...</option>
             { days.map((day) => optionField(day, 'day')) }
           </select>
-          <button type="submit">Salvar</button>
+          <button type="submit" disabled={ saveButtonStatus }>Salvar</button>
+          {/* <button onClick={saveCheck}>teste</button> */}
         </fieldset>
       </form>
     </section>
