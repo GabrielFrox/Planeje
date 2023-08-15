@@ -1,6 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { getUserData } from '../helpers/helpers';
 
 export default function UserInfoBar(props) {
+  const INITIAL_STATE = { userData: {
+    name: 'carregando...',
+    email: 'carregando...',
+    objective: 'carregando...',
+    course: 'carregando...',
+    cutscore: 'carregando...',
+    language: 'carregando...'
+  }};
+  const { errorHandler } = props;
+  const [state, setState] = useState(INITIAL_STATE);
+  useEffect(() => {
+    (async function (){
+      await getUserData(state, setState, errorHandler);
+    })()
+    // eslint-disable-next-line
+  }, [])
+
+
   const { userData: {
     name,
     email,
@@ -8,9 +27,7 @@ export default function UserInfoBar(props) {
     course,
     cutscore,
     language,
-  } } = props;
-  // console.log(props.userData);
-  
+  }} = state;
 
   return (
     <section>

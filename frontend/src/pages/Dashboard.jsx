@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-import { getUserInfo, updateUserInfo, removeDiscipline } from '../services/axios';
+import { useNavigate, useLocation } from 'react-router-dom';
+import { updateUserInfo, removeDiscipline } from '../services/axios';
+import { getUserData } from '../helpers/helpers';
 // import { updateUserInfo } from '../services/axios';
 import UserInfoBar from '../components/UserInfoBar';
 import Schedule from '../components/Schedule';
+import NavigationBar from '../components/NavigationBar';
 
 export default function Dashboard() {
   const INITIAL_STATE = {
@@ -13,6 +15,7 @@ export default function Dashboard() {
 
   const [state, setState] = useState(INITIAL_STATE);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const notify = (msg, type) => toast(msg, {
     type: type,
@@ -22,8 +25,7 @@ export default function Dashboard() {
     theme: "dark",
   });
 
-  
-  // Passe trough props to Schedule component to receive the user update in schedules
+  // Passed trough props to Schedule component to receive the user update in schedules
   const scheduleHandler = async (obj) => {
     const token = localStorage.getItem('token');
     const day = Object.keys(obj)[0];
@@ -90,30 +92,14 @@ export default function Dashboard() {
 
   // ComponentDidMount behavior to fetch data about user and do specific validations
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      errorHandler('Token não encontrado, faça login novamente');
-    }
-
-  // Token validation
-    async function fetchUserData(token) {
-      const userInfo = await getUserInfo(token);
-      if (userInfo.status === 401) {
-        errorHandler('Token inválido, faça login novamente');
-      }
-
-      setState({...state, userData: userInfo.data});
-    }
-
-    fetchUserData(token);
-    
+    getUserData(state, setState, errorHandler);
   // eslint-disable-next-line
-  }, []);
+  },[]);
 
   const dashboardContent = () => {
     return (
       <>
-        <UserInfoBar userData={ state.userData }/>
+        <UserInfoBar userData={ state.userData } errorHandler={ errorHandler } />
         <Schedule schedule={ state.userData.schedule } handler={ scheduleHandler } removeHandler={ removeDisciplineHandler } />
       </>
     );
@@ -121,6 +107,7 @@ export default function Dashboard() {
 
   return (
     <div>
+      <NavigationBar location={ location.pathname }/>
       { state.userData ? dashboardContent() : <h3>Carregando...</h3> }
       <ToastContainer />
     </div>
