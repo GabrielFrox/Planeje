@@ -34,7 +34,7 @@ export default function Dashboard() {
     const newDaySchedule = {
       [day]: state.userData.schedule[day].concat(discipline)
     };
-    // console.log(newDaySchedule);
+    
 
     setState((curr) => {
       return {
@@ -99,7 +99,7 @@ export default function Dashboard() {
   const dashboardContent = () => {
     return (
       <>
-        <UserInfoBar userData={ state.userData } errorHandler={ errorHandler } />
+        <UserInfoBar errorHandler={ errorHandler } />
         <Schedule schedule={ state.userData.schedule } handler={ scheduleHandler } removeHandler={ removeDisciplineHandler } />
       </>
     );

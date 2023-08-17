@@ -11,7 +11,7 @@ export default function NavigationBar ({ location }) {
 
   useEffect(() => {
     setPathName(location);
-    console.log('teste');
+    // eslint-disable-next-line
   }, []);
 
   return (

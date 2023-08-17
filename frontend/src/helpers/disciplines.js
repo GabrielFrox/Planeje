@@ -1,5 +1,7 @@
 export const disciplines = {
-  "Artes": [
+  "Artes": {
+    icon: 'https://www.svgrepo.com/show/532242/palette.svg',
+    subject: [
     "Arte: conceitos, modalidades, estéticas, funções e estados",
     "Elementos básicos de artes plásticas",
     "Arte Pré-Histórica",
@@ -52,7 +54,11 @@ export const disciplines = {
     "Música no século XX",
     "Teatro brasileiro"
   ],
-  "Biologia": [
+  },
+  
+  "Biologia": {
+    icon: 'https://www.svgrepo.com/show/532299/bug.svg',
+    subject: [
     "Origem da vida",
     "Teorias Evolucionistas: Lamarck, Darwin e Teoria Sintética",
     "Mecanismos de Especiação e Conceitos da Evolução",
@@ -160,7 +166,11 @@ export const disciplines = {
     "Movimentos vegetais",
     "Fotoperiodismo"
   ],
-  "Educação física": [
+  },
+  
+  "Educação física": {
+    icon: 'https://www.svgrepo.com/show/533263/message-square-heart.svg',
+    subject: [
     "Padrão estético contemporâneo",
     "Influência da mídia no corpo",
     "Exercício Físico e Saúde",
@@ -190,7 +200,11 @@ export const disciplines = {
     "Jogos",
     "Brincadeiras"
   ],
-  "Filosofia": [
+  },
+  
+  "Filosofia": {
+    icon: 'https://cdn-icons-png.flaticon.com/512/2228/2228683.png',
+    subject: [
     "Surgimento da Filosofia: O Contexto Sociopolítico na Grécia Antiga",
     "Conceitos: Mito, Senso Comum, Filosofia e Ciência",
     "Pré-Socráticos: Tales de Mileto, Anaximandro e Anaxímenes",
@@ -229,7 +243,11 @@ export const disciplines = {
     "Noam Chomsky: Gramática Gerativa",
     "Revolução genética e Bioética"
   ],
-  "Física": [
+  },
+  
+  "Física": {
+    icon: 'https://www.svgrepo.com/show/532900/atom.svg',
+    subject: [
     "Grandezas Físicas, Notação Padrão e Unidades de medida",
     "Conceitos Básicos e definições da Cinemática",
     "Velocidade escalar média",
@@ -313,7 +331,11 @@ export const disciplines = {
     "Lei da Gravitação Universal",
     "Campo Gravitacional"
   ],
-  "Geografia": [
+  },
+  
+  "Geografia": {
+    icon: 'https://www.svgrepo.com/show/532529/globe-stand.svg',
+    subject: [
     "Demografia, Conceitos Demográficos, Indicadores Demográficos e IBGE",
     "Teorias Demográficas, Transição Demográfica e Estrutura da População",
     "Migração: Fatores Migratórios e Tipos de Migração",
@@ -396,7 +418,11 @@ export const disciplines = {
     "Regionalismo: Aspectos Físicos, Populacionais e Econômicos do SUDESTE",
     "Regionalismo: Aspectos Físicos, Populacionais e Econômicos do SUL"
   ],
-  "História": [
+  },
+  
+  "História": {
+    icon: 'https://www.svgrepo.com/show/532697/film.svg',
+    subject: [
     "“Pré-História” e Desenvolvimento Cultural do Homo Sapiens",
     "Civilizações Hidráulicas da Antiguidade Oriental: Mesopotâmia e Egito",
     "Outros Povos da Antiguidade: Persas, Hebreus e Fenícios",
@@ -485,7 +511,11 @@ export const disciplines = {
     "Nova República: Contradições dos Governos Lula e Dilma, BRICS e Governo Temer",
     "Nova República: Bolsonaro, Degradação dos Indicadores Sociais e Devastação da Amazônia"
   ],
-  "Língua estrangeira (espanhol)": [
+  },
+  
+  "Língua estrangeira (espanhol)": {
+    icon: 'https://www.svgrepo.com/show/532170/english-to-chinese.svg',
+    subject: [
     "Estrategia de lectura en españo",
     "Interpretación de texto",
     "Introducción a la cultura hispano-americana",
@@ -527,7 +557,11 @@ export const disciplines = {
     "Análisis de Fotos y Pinturas",
     "Falsos Amigos em español"
   ],
-  "Língua estrangeira (inglês)": [
+  },
+  
+  "Língua estrangeira (inglês)": {
+    icon: 'https://www.svgrepo.com/show/532170/english-to-chinese.svg',
+    subject: [
     "Basic Review",
     "Reading Technique",
     "Nouns",
@@ -568,7 +602,11 @@ export const disciplines = {
     "Technical text",
     "Advertisement"
   ],
-  "Língua portuguesa": [
+  },
+  
+  "Língua portuguesa": {
+    icon: 'https://www.svgrepo.com/show/532231/text-size.svg',
+    subject: [
     "Compreensão e Interpretação de texto",
     "Técnicas de leitura",
     "Estrutura e formação de palavras",
@@ -585,7 +623,11 @@ export const disciplines = {
     "Conjunção e Palavras denotativas: Conceito, classificações e aplicações",
     "Vocabulário aplicado à prova"
   ],
-  "Literatura": [
+  },
+  
+  "Literatura": {
+    icon: 'https://www.svgrepo.com/show/532353/book-user.svg',
+    subject: [
     "Introdução à Literatura",
     "Gêneros literários: Épico, lírico, dramática, ensaístico",
     "Elementos da poesia",
@@ -632,7 +674,11 @@ export const disciplines = {
     "Prosa contemporânea",
     "Análise de Obras"
   ],
-  "Matemática": [
+  },
+  
+  "Matemática": {
+    icon: 'https://www.svgrepo.com/show/532222/superscript.svg',
+    subject: [
     "Adição e Subtração",
     "Multiplicação e Divisão",
     "Notações Matemáticas e Glossário Básico",
@@ -725,7 +771,11 @@ export const disciplines = {
     "Função Tangente e Cotangente",
     "Equações e Inequações Trigonométricas"
   ],
-  "Redação": [
+  },
+  
+  "Redação": {
+    icon: 'https://www.svgrepo.com/show/532143/align-left.svg',
+    subject: [
     "O Texto Dissertativo-argumentativo: Características e Particularidades",
     "O Texto Dissertativo-argumentativo: Estrutura",
     "Concisão no Parágrafo e Progressão Textual",
@@ -766,7 +816,11 @@ export const disciplines = {
     "Análise de redações Exemplares: 1",
     "Análise de redações Exemplares: 2"
   ],
-  "Química": [
+  },
+  
+  "Química": {
+    icon: 'https://www.svgrepo.com/show/532634/flask-round-potion.svg',
+    subject: [
     "Propriedades da matéria",
     "Substâncias químicas e suas transformações",
     "Substâncias puras, Misturas homogêneas e Misturas Heterogêneas",
@@ -855,7 +909,11 @@ export const disciplines = {
     "pH",
     "Hidrólise Salina"
   ],
-  "Sociologia": [
+  },
+  
+  "Sociologia": {
+    icon: 'https://cdn-icons-png.flaticon.com/512/3533/3533224.png',
+    subject: [
     "Surgimento da Sociologia: Contexto Histórico-Social",
     "Augusto Comte: Positivismo e a Lei dos Três Estados",
     "Émile Durkheim: Sociologia como Ciência e Fatos Sociais",
@@ -901,7 +959,11 @@ export const disciplines = {
     "Paulo Freire: Pedagogia do Oprimido",
     "Equidade e John Rawls: Teoria da Justiça"
   ],
-  "Tecnologia da informação e comunicação": [
+  },
+  
+  "Tecnologia da informação e comunicação": {
+    icon: 'https://www.svgrepo.com/show/533109/microchip.svg',
+    subject: [
     "Função e Impacto das Novas Mídias",
     "Gêneros Digitais",
     "Cibercultura",
@@ -918,4 +980,6 @@ export const disciplines = {
     "Inteligência artificial e internet das coisas",
     "Marketing tradicional x Marketing digital"
   ]
+  },
+  
 };
