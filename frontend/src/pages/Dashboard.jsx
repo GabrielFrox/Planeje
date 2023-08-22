@@ -99,15 +99,15 @@ export default function Dashboard() {
   const dashboardContent = () => {
     return (
       <>
-        <UserInfoBar errorHandler={ errorHandler } />
         <Schedule schedule={ state.userData.schedule } handler={ scheduleHandler } removeHandler={ removeDisciplineHandler } />
       </>
     );
   }
-
+  
   return (
     <div>
       <NavigationBar location={ location.pathname }/>
+      <UserInfoBar errorHandler={ errorHandler } />
       { state.userData ? dashboardContent() : <h3>Carregando...</h3> }
       <ToastContainer />
     </div>

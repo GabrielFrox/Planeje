@@ -33,8 +33,9 @@ export default function Disciplines() {
       <UserInfoBar errorHandler={ errorHandler }/>
       <h1>Disciplinas</h1>
       { 
-        disciplinesArray.map((discipline) => (
-        <Link to={`/disciplines/${discipline}`} key={ discipline }>
+        disciplinesArray.map((discipline, i) => (
+        <Link to={`/disciplines/${ i }`} key={ discipline }>
+        {/* <Link to={ <DisciplineSubject subject={ discipline } /> } key={ discipline }> */}
           <div>
             <img className='subjects-icon' src={ disciplines[discipline].icon } alt="" />
             <h3>{ discipline }</h3>
